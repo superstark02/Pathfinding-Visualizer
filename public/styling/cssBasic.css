@@ -25,6 +25,7 @@
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
   animation-play-state: running;
+  background-color: white;
 }
 
 .instantshortest-path-up{
@@ -732,6 +733,7 @@
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
   animation-play-state: running;
+  background-color: white;
 }
 
 @keyframes specialNodes {
@@ -1178,8 +1180,8 @@ body {
   font-family: "Lato", Helvetica, Arial, sans-serif;
   font-size: 18px;
   line-height: 1.72222;
-  color: #34495e;
-  background-color: #ffffff;
+  color: white;
+  background-color: black;
 }
 a {
   color: #16a085;
@@ -5402,7 +5404,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #cccccc;
 }
 .navbar-inverse {
-  background-color: #34495e;
+  background-color: black;
 }
 .navbar-inverse .navbar-brand {
   color: #ffffff;
