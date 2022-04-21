@@ -48,8 +48,8 @@
               <li id='startButtonStart'><button id="actualStartButton" class="btn btn-default navbar-btn"
                   type="button">Visualize!</button></li>
               <li id='startButtonClearBoard'><a href="#">Clear Board</a></li>
-              <li id='startButtonClearWalls'><a href="#">Clear Walls &amp; Weights</a></li>
-              <li id='startButtonClearPath'><a href="#">Clear Path</a></li>
+              <li id='startButtonClearWalls' style="display: none;" ><a href="#">Clear Walls &amp; Weights</a></li>
+              <li id='startButtonClearPath' style="display: none;"><a href="#">Clear Path</a></li>
               <li class="dropdown" style="display: none;">
                 <a id="adjustSpeed" class="dropdown-toggle" data-toggle="dropdown" href="#">Speed: Fast
                   <span class="caret"></span></a>
@@ -75,9 +75,10 @@
     <button id="previousButton" class="btn btn-default navbar-btn" type="button">Previous</button>
     <button id="skipButton" class="btn btn-default navbar-btn" type="button">Skip Tutorial</button>
   </div>
-  <div id='mainGrid'>
-    <div id='mainText'>
-      <ul>
+  
+  <div id='mainGrid'>   
+      <div id='mainText'>
+      <!--<ul>
         <li>
           <div class="start"></div>Start Node
         </li>
@@ -100,8 +101,12 @@
         <li>
           <div class="wall"></div>Wall Node
         </li>
-      </ul>
+      </ul>-->
     </div>
+    <audio controls id="audio" >
+      <source src="bgmusic.mp3" type="audio/mp3"  >
+      Your browser does not support the audio element.
+    </audio>
     <div id="algorithmDescriptor" style="display: none;">Pick an algorithm and visualize it!</div>
     <table id='board' />
   </div>

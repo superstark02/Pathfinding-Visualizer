@@ -14,6 +14,11 @@ const simpleDemonstration = require("./mazeAlgorithms/simpleDemonstration");
 const bidirectional = require("./pathfindingAlgorithms/bidirectional");
 const getDistance = require("./getDistance");
 
+document.getElementById("actualStartButton").onclick = () => {
+  var audio = document.getElementById("audio")
+  console.log(audio)
+}
+
 function Board(height, width) {
   this.height = height;
   this.width = width;
@@ -42,13 +47,13 @@ function Board(height, width) {
   this.speed = "fast";
 }
 
-Board.prototype.initialise = function() {
+Board.prototype.initialise = function () {
   this.createGrid();
   this.addEventListeners();
   this.toggleTutorialButtons();
 };
 
-Board.prototype.createGrid = function() {
+Board.prototype.createGrid = function () {
   let tableHTML = "";
   for (let r = 0; r < this.height; r++) {
     let currentArrayRow = [];
@@ -76,7 +81,7 @@ Board.prototype.createGrid = function() {
   board.innerHTML = tableHTML;
 };
 
-Board.prototype.addEventListeners = function() {
+Board.prototype.addEventListeners = function () {
   let board = this;
   for (let r = 0; r < board.height; r++) {
     for (let c = 0; c < board.width; c++) {
@@ -144,23 +149,23 @@ Board.prototype.addEventListeners = function() {
   }
 };
 
-Board.prototype.getNode = function(id) {
+Board.prototype.getNode = function (id) {
   let coordinates = id.split("-");
   let r = parseInt(coordinates[0]);
   let c = parseInt(coordinates[1]);
   return this.boardArray[r][c];
 };
 
-Board.prototype.changeSpecialNode = function(currentNode) {
+Board.prototype.changeSpecialNode = function (currentNode) {
   let element = document.getElementById(currentNode.id), previousElement;
   if (this.previouslySwitchedNode) previousElement = document.getElementById(this.previouslySwitchedNode.id);
   if (currentNode.status !== "target" && currentNode.status !== "start" && currentNode.status !== "object") {
     if (this.previouslySwitchedNode) {
       this.previouslySwitchedNode.status = this.previouslyPressedNodeStatus;
       previousElement.className = this.previouslySwitchedNodeWeight === 15 ?
-      "unvisited weight" : this.previouslyPressedNodeStatus;
+        "unvisited weight" : this.previouslyPressedNodeStatus;
       this.previouslySwitchedNode.weight = this.previouslySwitchedNodeWeight === 15 ?
-      15 : 0;
+        15 : 0;
       this.previouslySwitchedNode = null;
       this.previouslySwitchedNodeWeight = currentNode.weight;
 
@@ -180,7 +185,7 @@ Board.prototype.changeSpecialNode = function(currentNode) {
   }
 };
 
-Board.prototype.changeNormalNode = function(currentNode) {
+Board.prototype.changeNormalNode = function (currentNode) {
   let element = document.getElementById(currentNode.id);
   let relevantStatuses = ["start", "target", "object"];
   let unweightedAlgorithms = ["dfs", "bfs"]
@@ -203,7 +208,7 @@ Board.prototype.changeNormalNode = function(currentNode) {
   }
 };
 
-Board.prototype.drawShortestPath = function(targetNodeId, startNodeId, object) {
+Board.prototype.drawShortestPath = function (targetNodeId, startNodeId, object) {
   let currentNode;
   if (this.currentAlgorithm !== "bidirectional") {
     currentNode = this.nodes[this.nodes[targetNodeId].previousNode];
@@ -259,7 +264,7 @@ Board.prototype.drawShortestPath = function(targetNodeId, startNodeId, object) {
   }
 };
 
-Board.prototype.addShortestPath = function(targetNodeId, startNodeId, object) {
+Board.prototype.addShortestPath = function (targetNodeId, startNodeId, object) {
   let currentNode = this.nodes[this.nodes[targetNodeId].previousNode];
   if (object) {
     while (currentNode.id !== startNodeId) {
@@ -275,7 +280,7 @@ Board.prototype.addShortestPath = function(targetNodeId, startNodeId, object) {
   }
 };
 
-Board.prototype.drawShortestPathTimeout = function(targetNodeId, startNodeId, type, object) {
+Board.prototype.drawShortestPathTimeout = function (targetNodeId, startNodeId, type, object) {
   let board = this;
   let currentNode;
   let secondCurrentNode;
@@ -326,14 +331,14 @@ Board.prototype.drawShortestPathTimeout = function(targetNodeId, startNodeId, ty
           }
           secondCurrentNode = board.nodes[secondCurrentNode.otherpreviousNode]
         }
+      }
+    } else {
+      currentNodesToAnimate = [];
+      let target = board.nodes[board.target];
+      currentNodesToAnimate.push(board.nodes[target.previousNode], target);
     }
-  } else {
-    currentNodesToAnimate = [];
-    let target = board.nodes[board.target];
-    currentNodesToAnimate.push(board.nodes[target.previousNode], target);
-  }
 
-}
+  }
 
 
   timeout(0);
@@ -405,7 +410,7 @@ Board.prototype.drawShortestPathTimeout = function(targetNodeId, startNodeId, ty
 
 };
 
-Board.prototype.createMazeOne = function(type) {
+Board.prototype.createMazeOne = function (type) {
   Object.keys(this.nodes).forEach(node => {
     let random = Math.random();
     let currentHTMLNode = document.getElementById(node);
@@ -425,7 +430,7 @@ Board.prototype.createMazeOne = function(type) {
   });
 };
 
-Board.prototype.clearPath = function(clickedButton) {
+Board.prototype.clearPath = function (clickedButton) {
   if (clickedButton) {
     let start = this.nodes[this.start];
     let target = this.nodes[this.target];
@@ -517,7 +522,7 @@ Board.prototype.clearPath = function(clickedButton) {
   });
 };
 
-Board.prototype.clearWalls = function() {
+Board.prototype.clearWalls = function () {
   this.clearPath("clickedButton");
   Object.keys(this.nodes).forEach(id => {
     let currentNode = this.nodes[id];
@@ -530,7 +535,7 @@ Board.prototype.clearWalls = function() {
   });
 }
 
-Board.prototype.clearWeights = function() {
+Board.prototype.clearWeights = function () {
   Object.keys(this.nodes).forEach(id => {
     let currentNode = this.nodes[id];
     let currentHTMLNode = document.getElementById(id);
@@ -542,7 +547,7 @@ Board.prototype.clearWeights = function() {
   });
 }
 
-Board.prototype.clearNodeStatuses = function() {
+Board.prototype.clearNodeStatuses = function () {
   Object.keys(this.nodes).forEach(id => {
     let currentNode = this.nodes[id];
     currentNode.previousNode = null;
@@ -558,7 +563,7 @@ Board.prototype.clearNodeStatuses = function() {
   })
 };
 
-Board.prototype.instantAlgorithm = function() {
+Board.prototype.instantAlgorithm = function () {
   let weightedAlgorithms = ["dijkstra", "CLA", "greedy"];
   let unweightedAlgorithms = ["dfs", "bfs"];
   let success;
@@ -604,12 +609,12 @@ Board.prototype.instantAlgorithm = function() {
   }
 };
 
-Board.prototype.redoAlgorithm = function() {
+Board.prototype.redoAlgorithm = function () {
   this.clearPath();
   this.instantAlgorithm();
 };
 
-Board.prototype.reset = function(objectNotTransparent) {
+Board.prototype.reset = function (objectNotTransparent) {
   this.nodes[this.start].status = "start";
   document.getElementById(this.start).className = "startTransparent";
   this.nodes[this.target].status = "target";
@@ -623,14 +628,14 @@ Board.prototype.reset = function(objectNotTransparent) {
   }
 };
 
-Board.prototype.resetHTMLNodes = function() {
+Board.prototype.resetHTMLNodes = function () {
   let start = document.getElementById(this.start);
   let target = document.getElementById(this.target);
   start.className = "start";
   target.className = "target";
 };
 
-Board.prototype.changeStartNodeImages = function() {
+Board.prototype.changeStartNodeImages = function () {
   let unweighted = ["bfs", "dfs"];
   let strikethrough = ["bfs", "dfs"];
   let guaranteed = ["dijkstra", "astar"];
@@ -690,7 +695,7 @@ Board.prototype.changeStartNodeImages = function() {
 };
 
 let counter = 1;
-Board.prototype.toggleTutorialButtons = function() {
+Board.prototype.toggleTutorialButtons = function () {
 
   document.getElementById("skipButton").onclick = () => {
     document.getElementById("tutorial").style.display = "none";
@@ -740,7 +745,7 @@ Board.prototype.toggleTutorialButtons = function() {
 
 };
 
-Board.prototype.toggleButtons = function() {
+Board.prototype.toggleButtons = function () {
   document.getElementById("refreshButton").onclick = () => {
     window.location.reload(true);
   }
@@ -921,31 +926,31 @@ Board.prototype.toggleButtons = function() {
       let start = Math.floor(height / 2).toString() + "-" + Math.floor(width / 4).toString();
       let target = Math.floor(height / 2).toString() + "-" + Math.floor(3 * width / 4).toString();
 
-        Object.keys(this.nodes).forEach(id => {
-          let currentNode = this.nodes[id];
-          let currentHTMLNode = document.getElementById(id);
-          if (id === start) {
-            currentHTMLNode.className = "start";
-            currentNode.status = "start";
-          } else if (id === target) {
-            currentHTMLNode.className = "target";
-            currentNode.status = "target"
-          } else {
-            currentHTMLNode.className = "unvisited";
-            currentNode.status = "unvisited";
-          }
-          currentNode.previousNode = null;
-          currentNode.path = null;
-          currentNode.direction = null;
-          currentNode.storedDirection = null;
-          currentNode.distance = Infinity;
-          currentNode.totalDistance = Infinity;
-          currentNode.heuristicDistance = null;
-          currentNode.weight = 0;
-          currentNode.relatesToObject = false;
-          currentNode.overwriteObjectRelation = false;
+      Object.keys(this.nodes).forEach(id => {
+        let currentNode = this.nodes[id];
+        let currentHTMLNode = document.getElementById(id);
+        if (id === start) {
+          currentHTMLNode.className = "start";
+          currentNode.status = "start";
+        } else if (id === target) {
+          currentHTMLNode.className = "target";
+          currentNode.status = "target"
+        } else {
+          currentHTMLNode.className = "unvisited";
+          currentNode.status = "unvisited";
+        }
+        currentNode.previousNode = null;
+        currentNode.path = null;
+        currentNode.direction = null;
+        currentNode.storedDirection = null;
+        currentNode.distance = Infinity;
+        currentNode.totalDistance = Infinity;
+        currentNode.heuristicDistance = null;
+        currentNode.weight = 0;
+        currentNode.relatesToObject = false;
+        currentNode.overwriteObjectRelation = false;
 
-        });
+      });
       this.start = start;
       this.target = target;
       this.object = null;
