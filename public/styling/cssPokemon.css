@@ -4640,7 +4640,6 @@ fieldset[disabled] .input-group-btn .btn-default.active {
 }
 @media (min-width: 768px) {
   .navbar-header {
-    float: left;
   }
 }
 .navbar-collapse {

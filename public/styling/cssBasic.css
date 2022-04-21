@@ -4888,11 +4888,7 @@ fieldset[disabled] .input-group-btn .btn-default.active {
   border: none;
   border-radius: 0px;
 }
-@media (min-width: 768px) {
-  .navbar-header {
-    float: left;
-  }
-}
+
 .navbar-collapse {
   box-shadow: none;
   padding-right: 21px;
