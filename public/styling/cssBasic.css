@@ -12,7 +12,7 @@
 
 .start{
   /*border: 1px solid rgb(175, 216, 248);*/
-  background-image:url(triangletwo-right.svg);
+  background-image:url(circle.svg);
   /*background-color: rgb(255, 254, 106);*/
   background-position: center;
   background-repeat: no-repeat;
@@ -495,22 +495,22 @@
 @keyframes visitedAnimation {
   0% {
     transform: scale(.3);
-    background-color: #1abc9c;
+    background-color: #673ab7;
     border-radius: 100%;
   }
 
   50% {
-    background-color: #1abc9c;
+    background-color: #f50057;
   }
 
   75% {
     transform: scale(1.2);
-    background-color: rgba(0, 217, 159, 0.75)
+    background-color: #4aedc4
   }
 
   100% {
     transform: scale(1.0);
-    background-color: #2196f3;
+    background-color: #1abc9c;
   }
 }
 

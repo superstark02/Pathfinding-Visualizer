@@ -25,9 +25,9 @@
                   <li id='startButtonDijkstra'><a href="#">Dijkstra's Algorithm</a></li>
                   <li id='startButtonAStar2'><a href="#">A* Search</a></li>
                   <li id='startButtonGreedy'><a href="#">Greedy Best-first Search</a></li>
-                  <li id='startButtonAStar'><a href="#">Swarm Algorithm</a></li>
-                  <li id='startButtonAStar3'><a href="#">Convergent Swarm Algorithm</a></li>
-                  <li id='startButtonBidirectional'><a href="#">Bidirectional Swarm Algorithm</a></li>
+                  <li id='startButtonAStar'><a href="#" style="display: none;" >Swarm Algorithm</a></li>
+                  <li id='startButtonAStar3'><a href="#" style="display: none;">Convergent Swarm Algorithm</a></li>
+                  <li id='startButtonBidirectional'><a href="#" style="display: none;">Bidirectional Swarm Algorithm</a></li>
                   <li id='startButtonBFS'><a href="#">Breadth-first Search</a></li>
                   <li id='startButtonDFS'><a href="#">Depth-first Search</a></li>
                 </ul>
@@ -65,7 +65,7 @@
       </div>
     </nav>
   </div>
-  <div id="tutorial">
+  <div id="tutorial" style="display: none;" >
     <h3>Welcome to Pathfinding Visualizer!</h3>
     <h6>This short tutorial will walk you through all of the features of this application.</h6>
     <p>If you want to dive right in, feel free to press the "Skip Tutorial" button below. Otherwise, press "Next"!</p>
@@ -103,10 +103,6 @@
         </li>
       </ul>-->
     </div>
-    <audio controls id="audio" >
-      <source src="bgmusic.mp3" type="audio/mp3"  >
-      Your browser does not support the audio element.
-    </audio>
     <div id="algorithmDescriptor" style="display: none;">Pick an algorithm and visualize it!</div>
     <table id='board' />
   </div>

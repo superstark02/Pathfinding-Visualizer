@@ -1016,6 +1016,7 @@
         document.getElementById("tutorial").style.display = "none";
         this.toggleButtons();
       }
+      this.toggleButtons();
 
       if (document.getElementById("nextButton")) {
         document.getElementById("nextButton").onclick = () => {
